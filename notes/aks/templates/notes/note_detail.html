@@ -1,0 +1,15 @@
+{% extends 'main/xx.html' %}
+
+{% block title %}Деталі нотатки{% endblock %}
+
+{% block sale %}
+<main>
+    <h1>{{ note.title }}</h1>
+    <p>{{ note.content }}</p>
+    <hr>
+    <p>Створено: {{ note.created_at|date:"d-m-Y H:i" }}</p>
+    <p>Оновлено: {{ note.updated_at|date:"d-m-Y H:i" }}</p>
+    
+    <a href="{% url 'aks:note_list' %}" class="button">Назад до списку</a>
+</main>
+{% endblock %}

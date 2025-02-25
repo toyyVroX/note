@@ -1,0 +1,17 @@
+{% extends 'main/xx.html' %}
+
+{% block title %}sexshop{% endblock %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static  'css/auth.css' %}">
+
+{% block sale %}
+<main>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} 
+        <button type="submit">Зберегти</button>
+    </form>
+</main>
+{% endblock %}

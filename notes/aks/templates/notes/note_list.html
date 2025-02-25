@@ -1,0 +1,34 @@
+{% extends 'main/xx.html' %}
+
+{% block title %}sexshop{% endblock %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static  'css/auth.css' %}">
+
+{% block sale %}
+<main>
+    <h1>Ваші нотатки</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} 
+        <button type="submit" name="form_izi">Зберегти</button>
+    </form>
+<ul>
+    {% for note in notes %}
+        <li>
+            {% if note.pk %}
+                <a href="{% url 'aks:note_detail' note.pk %}">{{ note.title }}</a>
+                <form method="post" action="{% url 'aks:note_list' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="delete_note" value="{{ note.id }}">
+                    <button type="submit" style="color:red;">Видалити</button>
+                </form>
+            {% else %}
+                <span>Некоректна нотатка</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+</main>
+{% endblock %}

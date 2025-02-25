@@ -1,0 +1,19 @@
+{% extends 'main/xx.html' %}
+
+{% block title %}Деталі нотатки{% endblock %}
+
+{% block sale %}
+<main>
+<h1>Ви впевнені, що хочете видалити "{{ note.title }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Так</button>
+        <a href="{% url 'aks:note_list' %}">Скасувати</a>
+    </form>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} 
+        <button type="submit">Зберегти</button>
+    </form>
+</main>
+{% endblock %}
